@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>info</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <section class="w-3/4 mx-auto">
+        <h1 class="font-bold text-4xl text-center py-8">Let's get some <span class="text-yellow-300">Mooooooney</span></h1>
+        <div class="grid grid-cols-3 gap-4 text-white">
+            <div class="bg-green-400 p-8 text-center rounded-md">
+                <h3>Deposite</h3>
+                <h4 id="totalDeposit" class="text-3xl">$000</h4>
+            </div>
+            <div class="bg-yellow-400 p-8 text-center rounded-md">
+                <h3>Withdraw</h3>
+                <h4 class="text-3xl">$000</h4>
+            </div>
+            <div class="bg-blue-400 p-8 text-center rounded-md">
+                <h3>Balance</h3>
+                <h4 class="text-3xl">$1200</h4>
+            </div>
+
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+            <div class="p-8 bg-red-300 rounded-md my-4">
+                <h3 class="text-white text-2xl">Please Deposit</h3>
+                <input id="deposit-money" class="block w-4/5 my-4 py-2" type="text" placeholder="$ amount you want to deposit">
+                <button id="depositButton" class="bg-red-500 hover:bg-red-700 text-white px-4 py-1.5 rounded">Deposit</button>
+            </div>
+            <div class="p-8 bg-green-400 rounded-md my-4">
+                <h3 class="text-white text-2xl">Please Withdraw</h3>
+                <input id="withdraw-money" class="block w-4/5 my-4 py-2" type="text" placeholder="$ amount you want to withdraw">
+                <button id="withdrawButton" class="bg-red-500 hover:bg-red-700 text-white px-4 py-1.5 rounded">Withdraw</button>
+            </div>
+
+
+        </div>
+    </section>
+
+
+    <script>
+        document.getElementById('depositButton').addEventListener('click', function() {
+            const deposit = document.getElementById('deposit-money').value;
+
+
+            const totaldeposit = document.getElementById('totalDeposit');
+            totaldeposit.innerText = '$' + deposit;
+
+            document.getElementById('deposit-money').value = '';
+
+        })
+    </script>
+</body>
+
+</html>
