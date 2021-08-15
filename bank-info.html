@@ -15,15 +15,15 @@
         <div class="grid grid-cols-3 gap-4 text-white">
             <div class="bg-green-400 p-8 text-center rounded-md">
                 <h3>Deposite</h3>
-                <h4 id="totalDeposit" class="text-3xl">$000</h4>
+                <h4 class="text-3xl">$<span id="totalDeposit">00</span> </h4>
             </div>
             <div class="bg-yellow-400 p-8 text-center rounded-md">
                 <h3>Withdraw</h3>
-                <h4 class="text-3xl">$000</h4>
+                <h4 class="text-3xl">$ <span id="withdraw">00</span></h4>
             </div>
             <div class="bg-blue-400 p-8 text-center rounded-md">
                 <h3>Balance</h3>
-                <h4 class="text-3xl">$1200</h4>
+                <h4 class="text-3xl">$ <span id="balanceTotal">1200</span> </h4>
             </div>
 
         </div>
@@ -31,7 +31,9 @@
         <div class="grid grid-cols-2 gap-4">
             <div class="p-8 bg-red-300 rounded-md my-4">
                 <h3 class="text-white text-2xl">Please Deposit</h3>
-                <input id="deposit-money" class="block w-4/5 my-4 py-2" type="text" placeholder="$ amount you want to deposit">
+
+                <input id="deposit-input" class="block w-4/5 my-4 py-2" type="text" placeholder="$ amount you want to deposit">
+
                 <button id="depositButton" class="bg-red-500 hover:bg-red-700 text-white px-4 py-1.5 rounded">Deposit</button>
             </div>
             <div class="p-8 bg-green-400 rounded-md my-4">
@@ -44,19 +46,86 @@
         </div>
     </section>
 
-
     <script>
         document.getElementById('depositButton').addEventListener('click', function() {
-            const deposit = document.getElementById('deposit-money').value;
+            //input field
+            const inputMoney = document.getElementById('deposit-input');
+            const depositMoney = inputMoney.value;
+            const depositInputMoney = parseFloat(depositMoney);
 
 
-            const totaldeposit = document.getElementById('totalDeposit');
-            totaldeposit.innerText = '$' + deposit;
+            //total deposit field
+            const depositAmount = document.getElementById('totalDeposit');
+            const newDepositAmount = parseFloat(depositAmount.innerText);
 
-            document.getElementById('deposit-money').value = '';
+            depositAmount.innerText = depositInputMoney + newDepositAmount;
 
+            //balance field
+            const balance = document.getElementById('balanceTotal');
+            const balanceMoney = parseFloat(balance.innerText);
+            const totalBalance = balanceMoney + depositInputMoney;
+            balance.innerText = totalBalance;
+
+
+
+            inputMoney.value = '';
+        });
+
+
+        document.getElementById('withdrawButton').addEventListener('click', function() {
+            const withdraw = document.getElementById('withdraw-money');
+            const withdrawMoney = parseFloat(withdraw.value);
+            console.log(withdrawMoney);
+
+            const totalWithdraw = document.getElementById('withdraw');
+            const previousWithdraw = parseFloat(totalWithdraw.innerText);
+            const totalwithdrawMoney = withdrawMoney + previousWithdraw;
+            totalWithdraw.innerText = totalwithdrawMoney;
+
+            const withdrawBalance = document.getElementById('balanceTotal');
+
+            const withdrawBalanceAmount = parseFloat(withdrawBalance.innerText);
+            const totalWithdrawBalance = withdrawBalanceAmount - withdrawMoney;
+            withdrawBalance.innerText = totalWithdrawBalance;
+
+
+
+            withdraw.value = '';
         })
     </script>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <script>
+        document.getElementById('depositButton').addEventListener('click', function() {
+            const depositInput = document.getElementById('deposit-money');
+            const newDepositAmount = depositInput.value;
+            const depositTotal = document.getElementById('totalDeposit');
+            const previousDepositAmount = depositTotal.innerText;
+            const newDepositTotal = parseFloat(previousDepositAmount) + parseFloat(newDepositAmount);
+            depositTotal.innerText = newDepositTotal;
+
+            //update account balance
+            const balanceTotal = document.getElementById('balanceTotal');
+            const balanceTotalText = balanceTotal.innerText;
+            const previousBalanceTotal = parseFloat(balanceTotalText);
+            const newBalanceTotal = previousBalanceTotal + parseFloat(newDepositAmount);
+
+            balanceTotal.innerText = newBalanceTotal;
+
+
+
+            depositInput.value = '';
+        })
+    </script> -->
 </body>
 
 </html>
